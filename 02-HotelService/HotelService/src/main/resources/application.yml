@@ -1,2 +1,7 @@
 server:
   port: 9091
+
+jpa:
+  hibernate:
+    ddl-auto: update
+    show-sql: true
