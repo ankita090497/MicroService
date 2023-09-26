@@ -2,6 +2,7 @@
 server:
   port: 9091
 
+# database related configuration
 jpa:
   hibernate:
     ddl-auto: update
