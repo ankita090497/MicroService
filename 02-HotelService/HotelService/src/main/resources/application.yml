@@ -1,3 +1,4 @@
+# server port configuration
 server:
   port: 9091
 
