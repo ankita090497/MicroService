@@ -28,6 +28,7 @@ public class HotelController {
 
     }
 
+
     @GetMapping
     public ResponseEntity<List<HotelEntity>> getAllHotels(){
         List<HotelEntity> hotelList = hotelService.getAllHotel();
