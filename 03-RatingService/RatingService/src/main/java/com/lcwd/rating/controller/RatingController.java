@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rating")
+@RequestMapping("/ratings")
 public class RatingController {
 
     @Autowired
@@ -27,13 +27,13 @@ public class RatingController {
         return ResponseEntity.ok(ratingService.getAllRating());
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Rating>> getRatingByUserId(@PathVariable String userId){
-        return ResponseEntity.ok(ratingService.getRatingByUserId(userId));
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<Rating>> getRatingByUserId(@PathVariable Long userId){
+        return ResponseEntity.ok(ratingService.getRatingsByUserId(userId));
     }
 
     @GetMapping("/hotels/{hotelId}")
-    public ResponseEntity<List<Rating>> getRatingsByHotelId(@PathVariable String hotelId){
-        return ResponseEntity.ok(ratingService.getRatingByHotelId(hotelId));
+    public ResponseEntity<List<Rating>> getRatingsByHotelId(@PathVariable Long hotelId){
+        return ResponseEntity.ok(ratingService.getRatingsByHotelId(hotelId));
     }
 }
