@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         User user =  userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server !! " + userId));
         // fetch rating of the above user from Rating service
        // http://localhost:9093/rating/user/34684b22-cbaf-4ddd-9a35-9f3293c5175c
-        ArrayList<Rating> ratingOfUser = restTemplate.getForObject("http://localhost:9093/rating/user/"+user.getUserId(),ArrayList.class);
+        ArrayList<Rating> ratingOfUser = restTemplate.getForObject("http://localhost:8093/ratings/users/"+user.getUserId(),ArrayList.class);
         log.info("Rating : "+ratingOfUser);
         user.setRatings(ratingOfUser);
         return user;
