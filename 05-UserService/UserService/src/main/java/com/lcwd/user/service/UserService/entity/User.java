@@ -32,4 +32,5 @@ public class User {
     @Transient
     private ArrayList<Rating> ratings = new ArrayList<>();
 
+
 }
