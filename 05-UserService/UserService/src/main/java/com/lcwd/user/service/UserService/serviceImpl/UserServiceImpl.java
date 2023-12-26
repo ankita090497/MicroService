@@ -29,9 +29,6 @@ public class UserServiceImpl implements UserService {
     private Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     @Override
     public User saveUser(User user) {
-        // generate uniqueId
-        String randomUserId = UUID.randomUUID().toString();
-        user.setUserId(randomUserId);
         return userRepository.save(user);
     }
 
@@ -41,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String userId) {
+    public User getUser(Long userId) {
         User user =  userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server !! " + userId));
         // fetch rating of the above user from Rating service
        // http://localhost:9093/rating/user/34684b22-cbaf-4ddd-9a35-9f3293c5175c

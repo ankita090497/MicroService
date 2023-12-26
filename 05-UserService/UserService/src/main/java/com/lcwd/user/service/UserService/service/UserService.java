@@ -15,6 +15,6 @@ public interface UserService {
     List<User> getAllUser();
 
     // get single user of given Id
-    User getUser(String userId);
+    User getUser(Long userId);
 
 }
