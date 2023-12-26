@@ -11,5 +11,5 @@ public interface HotelService {
 
     List<HotelEntity> getAllHotel();
 
-    HotelEntity getHotelById(String hotelId) throws ResourceNotFoundException;
+    HotelEntity getHotelById(Long hotelId) throws ResourceNotFoundException;
 }

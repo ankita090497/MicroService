@@ -14,11 +14,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="hotels")
+@Table(name="tbl_hotel")
 public class HotelEntity {
     @Id
-    @Column(name = "id", nullable = false)
-    private String id;
+    @Column(name = "hotel_id", nullable = false)
+    private Long hotelId;
 
     @Column(name = "hotel_name")
     private String hotelName;

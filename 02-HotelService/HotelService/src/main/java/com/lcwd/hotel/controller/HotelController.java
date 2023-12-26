@@ -22,7 +22,7 @@ public class HotelController {
     }
 
     @GetMapping("/{hotelId}")
-    public ResponseEntity<HotelEntity> getHotelById(@PathVariable String hotelId){
+    public ResponseEntity<HotelEntity> getHotelById(@PathVariable Long hotelId){
         HotelEntity hotel = hotelService.getHotelById(hotelId);
         return ResponseEntity.ok(hotel);
 

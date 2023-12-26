@@ -18,8 +18,6 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public HotelEntity createHotel(HotelEntity hotel) {
-        String hotelId = UUID.randomUUID().toString();
-        hotel.setId(hotelId);
         return repository.save(hotel);
     }
 
@@ -29,7 +27,7 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public HotelEntity getHotelById(String hotelId) throws ResourceNotFoundException {
+    public HotelEntity getHotelById(Long hotelId) throws ResourceNotFoundException {
         return repository.findById(hotelId).orElseThrow(() -> new ResourceNotFoundException("Hotel with given id is not found on server !! " + hotelId));
     };
 }
