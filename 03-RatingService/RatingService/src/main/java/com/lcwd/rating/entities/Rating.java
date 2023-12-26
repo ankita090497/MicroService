@@ -18,9 +18,9 @@ public class Rating {
     @Column(name = "rating_id")
     private Long ratingId;
     @Column(name = "user_Id")
-    private String userId;
+    private Long userId;
     @Column(name = "hotel_Id")
-    private String hotelId;
+    private Long hotelId;
     @Column(name = "rating")
     private int rating;
     @Column(name = "feedback")
