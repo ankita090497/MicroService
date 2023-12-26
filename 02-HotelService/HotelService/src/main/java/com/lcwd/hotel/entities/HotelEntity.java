@@ -1,9 +1,6 @@
 package com.lcwd.hotel.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +13,10 @@ import lombok.Setter;
 @Entity
 @Table(name="tbl_hotel")
 public class HotelEntity {
+
     @Id
-    @Column(name = "hotel_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "hotel_id")
     private Long hotelId;
 
     @Column(name = "hotel_name")
