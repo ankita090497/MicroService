@@ -30,7 +30,7 @@ public class User {
     private String about;
 
     @Transient
-    private ArrayList<Rating> ratings = new ArrayList<>();
+    private List<Rating> ratings = new ArrayList<>();
 
 
 }

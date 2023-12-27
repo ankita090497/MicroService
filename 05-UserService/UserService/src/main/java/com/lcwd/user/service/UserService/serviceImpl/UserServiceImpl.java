@@ -1,5 +1,6 @@
 package com.lcwd.user.service.UserService.serviceImpl;
 
+import com.lcwd.user.service.UserService.entity.Hotel;
 import com.lcwd.user.service.UserService.entity.Rating;
 import com.lcwd.user.service.UserService.entity.User;
 import com.lcwd.user.service.UserService.exception.ResourceNotFoundException;
@@ -14,8 +15,10 @@ import org.springframework.web.client.RestTemplate;
 
 import java.lang.module.ResolutionException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -42,10 +45,21 @@ public class UserServiceImpl implements UserService {
     public User getUser(Long userId) {
         User user =  userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User with given id is not found on server !! " + userId));
         // fetch rating of the above user from Rating service
-       // http://localhost:9093/rating/user/34684b22-cbaf-4ddd-9a35-9f3293c5175c
-        ArrayList<Rating> ratingOfUser = restTemplate.getForObject("http://localhost:8093/ratings/users/"+user.getUserId(),ArrayList.class);
-        log.info("Rating : "+ratingOfUser);
-        user.setRatings(ratingOfUser);
+        Rating[] ratingOfUser = restTemplate.getForObject("http://RATING-SERVICE/ratings/users/"+user.getUserId(),Rating[].class);
+
+        List<Rating> ratingsList = Arrays.stream(ratingOfUser).toList();
+
+        List<Rating> ratingList = ratingsList.stream().map(rating -> {
+            // API call to hotel service to get Hotel
+            ResponseEntity<Hotel> response = restTemplate.getForEntity("http://HOTEL-SERVICE/hotels/"+rating.getHotelId(),Hotel.class);
+            Hotel hotel = response.getBody();
+            // set the hotel to rating
+            rating.setHotel(hotel);
+            // return the rating with hotel detail
+            return rating;
+        }).collect(Collectors.toList());
+
+        user.setRatings(ratingList);
         return user;
     }
 }
